@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Typing Animation Project</title>
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #222;
+      color: #0f0;
+      padding: 10px;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    #code-display {
+      white-space: pre-wrap;
+      font-size: 1rem;
+      border-left: 2px solid #0f0;
+      padding-left: 10px;
+      overflow: hidden;
+      margin-top: 20px;
+      word-wrap: break-word;
+      width: 100%; /* Make sure the display takes full width */
+      max-width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      color: #fff;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 500px;
+      height: 150px;
+      margin-bottom: 20px;
+      font-family: monospace;
+      font-size: 14px;
+      padding: 10px;
+      background-color: #333;
+      color: #0f0;
+      border: 1px solid #0f0;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 12px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.2rem;
+      }
+
+      textarea {
+        max-width: 90%;
+        font-size: 12px;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px 0;
+        font-size: 14px;
+      }
+
+      #code-display {
+        font-size: 0.9rem;
+        max-width: 100%; /* Ensures the code area doesn't overflow */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Code Typing Animation</h1>
+    <textarea id="code-input" placeholder="Paste your code here..."></textarea>
+    <button onclick="startTypingAnimation()">Start Animation</button>
+    <div id="code-display"></div>
+  </div>
+
+  <script>
+    // Function to start the typing animation
+    function startTypingAnimation() {
+      const codeInput = document.getElementById('code-input').value; // Get the pasted code
+      const codeDisplay = document.getElementById('code-display');
+      codeDisplay.textContent = ''; // Clear previous code
+      let index = 0;
+
+      function typeCode() {
+        if (index < codeInput.length) {
+          codeDisplay.textContent += codeInput[index];
+          index++;
+          setTimeout(typeCode, 10); // Typing speed
+        }
+      }
+
+      typeCode();
+    }
+  </script>
+</body>
+</html>
